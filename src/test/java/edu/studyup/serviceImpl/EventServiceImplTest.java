@@ -76,4 +76,22 @@ class EventServiceImplTest {
 		  });
 	}
 	
+	@Test
+	void testUpdateEvent_falseLength() {
+		int eventID = 1;
+		String name = "NewEventName                                     ";
+		Assertions.assertThrows(StudyUpException.class, () -> {
+			eventServiceImpl.updateEventName(eventID, name);
+		});
+	}
+	
+	@Test
+	void testUpdateEvent_twentyLength() throws StudyUpException{
+		int eventID = 1;
+		String name = "12345678901234567890";
+		eventServiceImpl.updateEventName(eventID, name);
+		assertEquals("12345678901234567890", DataStorage.eventData.get(eventID).getName());
+	}
+
+	
 }

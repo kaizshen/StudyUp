@@ -93,5 +93,20 @@ class EventServiceImplTest {
 		assertEquals("12345678901234567890", DataStorage.eventData.get(eventID).getName());
 	}
 
+	@Test
+	void testgetActiveEvent() throws StudyUpException{
+		Event event = new Event();
+		event.setEventID(2);
+		event.setDate(new Date(2020, 12, 13));
+		event.setName("Event 2");
+		Location location = new Location(-122, 37);
+		event.setLocation(location);
+		DataStorage.eventData.put(event.getEventID(), event);
+		List<Event> expected = new ArrayList<>();
+		expected.add(event);
+		List<Event> actual = eventServiceImpl.getActiveEvents();
+		assertTrue(DataStorage.eventData.get(1).getDate().before(new Date()));
+		assertEquals(expected, actual);
+	}
 	
 }

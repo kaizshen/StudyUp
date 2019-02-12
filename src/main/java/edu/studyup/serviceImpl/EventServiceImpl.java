@@ -36,6 +36,7 @@ public class EventServiceImpl implements EventService {
 		
 		for (Integer key : eventData.keySet()) {
 			Event ithEvent= eventData.get(key);
+			//no implementation of getting active dates. shouldn't output past events.
 			activeEvents.add(ithEvent);
 		}
 		return activeEvents;
@@ -67,6 +68,7 @@ public class EventServiceImpl implements EventService {
 			presentStudents = new ArrayList<>();
 		}
 		presentStudents.add(student);
+		//check the student capacity. 
 		event.setStudents(presentStudents);		
 		return DataStorage.eventData.put(eventID, event);
 	}

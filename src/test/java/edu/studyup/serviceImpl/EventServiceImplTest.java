@@ -105,7 +105,7 @@ class EventServiceImplTest {
 	}
 	
 	@Test //should pass all
-	void testgetActiveEvent() throws StudyUpException{
+	void testgetActiveEvent_pastEvent_badCase() throws StudyUpException{
 		Event event = new Event();
 		event.setEventID(2);
 		event.setDate(new Date(97, 12, 13));

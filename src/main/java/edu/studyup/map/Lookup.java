@@ -1,4 +1,6 @@
 package edu.studyup.map;
+import java.nio.charset.StandardCharsets;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,7 +45,7 @@ public class Lookup {
 			String urlString = "https://nominatim.openstreetmap.org/search?q=" + URLEncoder.encode(query, "UTF-8")
 					+ "&format=json";
 			URL url = new URL(urlString);
-			try (BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()))) {
+			try (BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(),StandardCharsets.UTF_8))) {
 				StringBuilder sb = new StringBuilder();
 				int cp;
 				while ((cp = in.read()) != -1) {

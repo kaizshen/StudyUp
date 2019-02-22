@@ -46,11 +46,13 @@ public class Event {
 	}
 
 	public Date getDate() {
-		return date;
+		Date _date = new Date(date.getTime());
+		return _date;
 	}
 
 	public void setDate(Date date) {
-		this.date = date;
+		Date _date = new Date(date.getTime());
+		this.date = _date;
 	}
 
 	public int getEventID() {

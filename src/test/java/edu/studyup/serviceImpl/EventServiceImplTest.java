@@ -78,6 +78,7 @@ class EventServiceImplTest {
 		  });
 	}
 	
+
 	@Test //should pass 
 	void testUpdateEvent_falseLength() {
 		int eventID = 1;
@@ -87,7 +88,6 @@ class EventServiceImplTest {
 		});
 	}
 
-	
 	@Test //should pass 
 	void testUpdateEvent_twentyLength() throws StudyUpException{
 		int eventID = 1;
@@ -95,7 +95,7 @@ class EventServiceImplTest {
 		eventServiceImpl.updateEventName(eventID, name);
 		assertEquals("12345678901234567890", DataStorage.eventData.get(eventID).getName());
 	}
-	
+
 	@Test //should pass 
 	void testUpdateEvent_LongEventID_badCase() {
 		int eventID = 1;
@@ -113,6 +113,12 @@ class EventServiceImplTest {
 		Location location = new Location(-122, 37);
 		event.setLocation(location);
 		DataStorage.eventData.put(event.getEventID(), event);
+
+		List<Event> expected = new ArrayList<>();
+		expected.add(event);
+		List<Event> actual = eventServiceImpl.getActiveEvents();
+		assertTrue(DataStorage.eventData.get(1).getDate().before(new Date()));
+		assertEquals(expected, actual);
 		
 		Event event3 = new Event();
 		event3.setEventID(3);
